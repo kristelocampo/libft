@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: krisocam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/04 13:17:58 by krisocam          #+#    #+#             */
-/*   Updated: 2019/11/04 15:26:55 by krisocam         ###   ########.fr       */
+/*   Created: 2019/11/04 16:24:38 by krisocam          #+#    #+#             */
+/*   Updated: 2019/11/04 16:39:07 by krisocam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
-# include <unistd.h>
-# include <stdio.h>
+#include "libft.h"
 
-int		ft_isalnum(int ch);
-int		ft_isaplha(int ch);
-int		ft_isascii(int ch);
-int		ft_isprint(int ch);
-int		ft_toupper(int ch);
-int		ft_tolower(int ch);
-size_t	ft_strlen(const char *str);
-size_t	ft_strlcpy(char *dest, const char *src, size_t size);
-#endif
+void	*ft_memset(void *b, int c, size_t len)
+{
+	char *start;
+
+	if (b == NULL)
+		return (NULL);
+	start = b;
+	while (len)
+	{
+		*start = c;
+		start++;
+		len--;
+	}
+	return (b);
+}

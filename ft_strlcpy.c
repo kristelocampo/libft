@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: krisocam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/04 13:17:58 by krisocam          #+#    #+#             */
-/*   Updated: 2019/11/04 15:26:55 by krisocam         ###   ########.fr       */
+/*   Created: 2019/11/04 15:07:00 by krisocam          #+#    #+#             */
+/*   Updated: 2019/11/04 15:49:38 by krisocam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
-# include <unistd.h>
-# include <stdio.h>
+#include "libft.h"
 
-int		ft_isalnum(int ch);
-int		ft_isaplha(int ch);
-int		ft_isascii(int ch);
-int		ft_isprint(int ch);
-int		ft_toupper(int ch);
-int		ft_tolower(int ch);
-size_t	ft_strlen(const char *str);
-size_t	ft_strlcpy(char *dest, const char *src, size_t size);
-#endif
+size_t		ft_strlcpy(char *dest, const char *src, size_t size)
+{
+	unsigned int	i;
+	unsigned int	j;
+
+	i = 0;
+	j = 0;
+	while (src[j])
+		j++;
+	if (size > 0)
+	{
+		while (src[i] && i < size - 1)
+		{
+			dest[i] = src[i];
+			i++;
+		}
+		dest[i] = '\0';
+	}
+	return (j);
+}
