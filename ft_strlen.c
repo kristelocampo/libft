@@ -6,7 +6,7 @@
 /*   By: krisocam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 13:06:23 by krisocam          #+#    #+#             */
-/*   Updated: 2019/11/04 14:35:39 by krisocam         ###   ########.fr       */
+/*   Updated: 2019/11/04 19:22:07 by krisocam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 size_t		ft_strlen(const char *str)
 {
-	unsigned int i;
+	size_t i;
 
 	i = 0;
 	while (str[i])
