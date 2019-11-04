@@ -6,13 +6,20 @@
 /*   By: krisocam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 16:18:25 by krisocam          #+#    #+#             */
-/*   Updated: 2019/11/04 16:24:16 by krisocam         ###   ########.fr       */
+/*   Updated: 2019/11/04 16:59:17 by krisocam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *dest, size_t n)
+void	ft_bzero(void *s, size_t n)
 {
+	unsigned int i;
 
+	i = 0;
+	while (i < n)
+	{
+		((char *)s)[i] = 0;
+		i++;
+	}
 }
