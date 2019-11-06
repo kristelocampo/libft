@@ -6,7 +6,7 @@
 /*   By: krisocam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 13:17:58 by krisocam          #+#    #+#             */
-/*   Updated: 2019/11/04 20:05:05 by krisocam         ###   ########.fr       */
+/*   Updated: 2019/11/05 14:51:06 by krisocam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <string.h>
+# include <stdlib.h>
 
 int			ft_isalnum(int ch);
 int			ft_isaplha(int ch);

@@ -6,7 +6,7 @@
 /*   By: krisocam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 16:59:37 by krisocam          #+#    #+#             */
-/*   Updated: 2019/11/04 18:06:47 by krisocam         ###   ########.fr       */
+/*   Updated: 2019/11/06 14:16:43 by krisocam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 
 	s1 = (unsigned char *)dest;
 	s2 = (unsigned char *)src;
+	if (s1 == '\0' && s2 == '\0')
+		return (NULL);
 	while (n)
 	{
 		*s1++ = *s2++;
