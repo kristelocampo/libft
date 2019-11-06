@@ -6,7 +6,7 @@
 /*   By: krisocam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 18:05:37 by krisocam          #+#    #+#             */
-/*   Updated: 2019/11/05 19:10:08 by krisocam         ###   ########.fr       */
+/*   Updated: 2019/11/06 20:33:07 by krisocam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_putnbr_fd(int n, int fd)
 {
 	if (n == -2147483648)
 	{
-		write(fd, "-2147483648", 1);
+		ft_putstr_fd("-2147483648", fd);
 		return ;
 	}
 	if (n < 0)
@@ -26,14 +26,9 @@ void	ft_putnbr_fd(int n, int fd)
 	}
 	if (n > 9)
 	{
-		ft_putnbr_fd(n / 10 , fd);
+		ft_putnbr_fd(n / 10, fd);
 		ft_putnbr_fd(n % 10, fd);
 	}
 	if (n <= 9)
 		ft_putchar_fd(n + 48, fd);
-}
-
-int main()
-{
-	ft_putnbr_fd(56, 1);
 }

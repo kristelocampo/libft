@@ -6,7 +6,7 @@
 /*   By: krisocam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 16:44:37 by krisocam          #+#    #+#             */
-/*   Updated: 2019/11/05 17:45:48 by krisocam         ###   ########.fr       */
+/*   Updated: 2019/11/06 20:52:09 by krisocam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ char	*ft_itoa(int n)
 
 	i = 0;
 	sign = 1;
-	dest = malloc(sizeof(char) * 20);
+	if (!(dest = malloc(sizeof(char) * 1200)))
+		return (NULL);
 	if (n == 0)
 	{
 		dest = "0";

@@ -1,35 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: krisocam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/05 16:19:12 by krisocam          #+#    #+#             */
-/*   Updated: 2019/11/06 20:34:20 by krisocam         ###   ########.fr       */
+/*   Created: 2019/11/06 20:54:36 by krisocam          #+#    #+#             */
+/*   Updated: 2019/11/06 21:08:40 by krisocam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *str, unsigned int start, size_t len)
+char	*ft_strmapi(char const *s1, char (*f)(unsigned int, char))
 {
 	unsigned int	i;
-	char			*tab;
+	unsigned int	len;
+	char			*s2;
 
-	i = 0;
-	if (str == NULL)
-		return (NULL);
-	if (!(tab = malloc(sizeof(char) * (len + 1))))
-		return (NULL);
-	if (!(start > len))
+	if (s1 && f)
 	{
-		while (str[start + i] && i < len)
+		i = 0;
+		len = ft_strlen((char *)s1);
+		if (!(s2 = (char *)malloc(sizeof(char) * len + 1)))
+			return (NULL);
+		while (s1[i])
 		{
-			tab[i] = str[start + i];
+			s2[i] = f(i, s1[i]);
 			i++;
 		}
+		s2[i] = '\0';
+		return (s2);
 	}
-	tab[i] = '\0';
-	return (tab);
+	return (NULL);
 }
