@@ -6,7 +6,7 @@
 /*   By: krisocam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 16:44:37 by krisocam          #+#    #+#             */
-/*   Updated: 2019/11/06 20:52:09 by krisocam         ###   ########.fr       */
+/*   Updated: 2019/11/07 19:27:26 by krisocam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,32 +39,34 @@ char	*ft_strrev(char *str)
 char	*ft_itoa(int n)
 {
 	int		i;
+	long	nb;
 	int		sign;
 	char	*dest;
 
 	i = 0;
 	sign = 1;
-	if (!(dest = malloc(sizeof(char) * 1200)))
+	if (!(dest = malloc(sizeof(char) * 20)))
 		return (NULL);
-	if (n == 0)
+	nb = n;
+	if (nb == 0)
 	{
 		dest = "0";
 		return (dest);
 	}
-	if (n == -2147483648)
+	if (nb == -2147483648)
 	{
 		dest = "-2147483648";
 		return (dest);
 	}
-	if (n < 0)
+	if (nb < 0)
 	{
 		sign = -1;
-		n = -n;
+		nb = -nb;
 	}
-	while (n)
+	while (nb)
 	{
-		dest[i] = n % 10 + 48;
-		n = n / 10;
+		dest[i] = nb % 10 + 48;
+		nb = nb / 10;
 		i++;
 	}
 	if (sign == -1)
