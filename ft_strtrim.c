@@ -6,7 +6,7 @@
 /*   By: krisocam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 20:52:26 by krisocam          #+#    #+#             */
-/*   Updated: 2019/11/07 19:37:07 by krisocam         ###   ########.fr       */
+/*   Updated: 2019/11/11 22:28:32 by krisocam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,29 +22,34 @@ char	*ft_strtrim(char const *s1, char const *set)
 	if (s1 == NULL || set == NULL)
 		return (NULL);
 	start = 0;
-	i = 0;
-	while (s1[start] == *set)
+	while (s1[start] == *set && s1[start])
 		start++;
-	len = ft_strlen(s1);
-	while (s1[len - 1] == *set)
+	len = ft_strlen(s1) - 1;
+	while (s1[len] == *set && s1[len] && len > start)
 		len--;
-	if (!(str = malloc(sizeof(char) * len)))
+	if (!(str = malloc(sizeof(char) * (len - start + 1))))
 		return (NULL);
-	s1 += i;
-	while (++i < len)
-		str[i] = *s1++;
-	str[i] = '\0';
+	i = 0;
+	if (!(start > len))
+	{
+		while (s1[start + i] && i < len)
+		{
+			str[i] = s1[start + i];
+			i++;
+		}
+		str[i] = '\0';
+	}
 	return (str);
 }
-
+/*
 #include <libc.h>
 int main()
 {
 	char	*s1 = "   \t  \n\n \t\t  \n\n\nHello \t  Please\n Trim me !\n   \n \n \t\t\n  ";
-//	char	*s2 = "Hello \t  Please\n Trim me !";
+	//	char	*s2 = "Hello \t  Please\n Trim me !";
 
 	printf("%s\n",ft_strtrim(s1, "\n\t"));
-//	printf("%d\n",strtrim(s1, "\t\n"));
-//	printf("%s\n",ft_strtrim(s2, "\n"));
-//	printf("%d\n",strtrim(s2, "\n"));
-}
+	//	printf("%d\n",strtrim(s1, "\t\n"));
+	//	printf("%s\n",ft_strtrim(s2, "\n"));
+	//	printf("%d\n",strtrim(s2, "\n"));
+}*/

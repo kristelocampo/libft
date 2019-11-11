@@ -6,7 +6,7 @@
 /*   By: krisocam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 20:36:15 by krisocam          #+#    #+#             */
-/*   Updated: 2019/11/07 19:49:00 by krisocam         ###   ########.fr       */
+/*   Updated: 2019/11/11 23:27:42 by krisocam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,43 +25,57 @@ int		separator(char const *str, char c)
 	}
 	return (0);
 }
+
 char	**ft_split(char const *str, char c)
 {
 	int		i;
 	int		j;
 	int		k;
+	int		in;
 	char	**split;
 
-	i = 0;
+	if (!str)
+		return (NULL);
 	if (!(split = malloc(sizeof(char *) * (ft_strlen(str) + 1))))
 		return (NULL);
-	while (separator(&str[i], c) == 1)
-		i++;
-	j = 0;
+	i = 0;
+	in = 0;
 	while (str[i])
 	{
-		k = 0;
-		if (!(split[j] = malloc(sizeof(char) * 4096)))
-			return (NULL);
-		while (str[i] && separator(&str[i], c) == 0)
-			split[j][k++] = str[i++];
-		while (str[i] && separator(&str[i], c) == 1)
+		while (separator(&str[i], c))
 			i++;
-		split[j][k] = '\0';
-		j = j + 1;
+		k = 0;
+		while (!separator(&str[i], c) && str[i + k])
+			k++;
+		in = 0;
+		if (!(split[in] = malloc(sizeof(char) * (k + 1))))
+			return (NULL);
+		j = 0;
+		while (!separator(&str[i], c) && str[i])
+			split[in][j++] = str[i++];
+	   split[in][j] = '\0';
 	}
-	split[j] = NULL;
+	split[in] = NULL;
 	return (split);
-
 }
-/*
+/**
 int main()
 {
-	char** res;
-	for (res = ft_split("asdf qwerty zxcv", ' '); *res != 0; res++)
-		printf("'%s',", *res);
-	printf("\n");
-	for (res = ft_split("s1_s2___++++___s3", '_'); *res != 0; res++)
-		printf("'%s',", *res);
-	printf("\n");
-}*/
+	char months[] = "JAN,FEB,MAR,APR,MAY,JUN,JUL,AUG,SEP,OCT,NOV,DEC";
+    char** tokens;
+    printf("months=[%s]\n\n", months);
+
+    tokens = ft_split(months, ',');
+
+    if (tokens)
+    {
+        int i;
+        for (i = 0; *(tokens + i); i++)
+        {
+            printf("month=[%s]\n", *(tokens + i));
+            free(*(tokens + i));
+        }
+        printf("\n");
+        free(tokens);
+    }
+}**/

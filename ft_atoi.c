@@ -6,7 +6,7 @@
 /*   By: krisocam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 14:41:18 by krisocam          #+#    #+#             */
-/*   Updated: 2019/11/07 16:40:54 by krisocam         ###   ########.fr       */
+/*   Updated: 2019/11/11 12:58:32 by krisocam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		ft_atoi(const char *str)
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		result = result * 10 + (long int)(str[i] - 48);
-		i++;	
+		i++;
 	}
 	return (result * sign);
 }

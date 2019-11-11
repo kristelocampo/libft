@@ -6,67 +6,37 @@
 /*   By: krisocam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 16:44:37 by krisocam          #+#    #+#             */
-/*   Updated: 2019/11/07 19:27:26 by krisocam         ###   ########.fr       */
+/*   Updated: 2019/11/11 22:39:17 by krisocam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrev(char *str)
+int		nb_size(unsigned int nb)
 {
-	int		i;
-	int		size;
-	int		count;
-	char	swap;
+	unsigned int size;
 
-	i = 0;
 	size = 0;
-	count = 0;
-	while (str[size])
-		size++;
-	while (i < size - 1)
+	while (nb >= 10)
 	{
-		swap = str[i];
-		str[i] = str[size - 1];
-		str[size - 1] = swap;
-		i++;
-		size--;
-		count++;
+		nb /= 10;
+		size++;
 	}
-	return (str);
+	return (size);
 }
 
-char	*ft_itoa(int n)
+char	*calc(int n, int sign)
 {
-	int		i;
-	long	nb;
-	int		sign;
 	char	*dest;
+	int		i;
 
 	i = 0;
-	sign = 1;
-	if (!(dest = malloc(sizeof(char) * 20)))
+	if (!(dest = malloc(sizeof(char) * nb_size(n))))
 		return (NULL);
-	nb = n;
-	if (nb == 0)
+	while (n)
 	{
-		dest = "0";
-		return (dest);
-	}
-	if (nb == -2147483648)
-	{
-		dest = "-2147483648";
-		return (dest);
-	}
-	if (nb < 0)
-	{
-		sign = -1;
-		nb = -nb;
-	}
-	while (nb)
-	{
-		dest[i] = nb % 10 + 48;
-		nb = nb / 10;
+		dest[i] = n % 10 + 48;
+		n /= 10;
 		i++;
 	}
 	if (sign == -1)
@@ -77,4 +47,21 @@ char	*ft_itoa(int n)
 	dest[i] = '\0';
 	ft_strrev(dest);
 	return (dest);
+}
+
+char	*ft_itoa(int n)
+{
+	int	sign;
+
+	sign = 1;
+	if (n == 0)
+		return (ft_strdup("0"));
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
+	if (n < 0)
+	{
+		sign = -1;
+		n = -n;
+	}
+	return (calc(n, sign));
 }

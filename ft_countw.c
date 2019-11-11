@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_countw.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: krisocam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/05 15:19:00 by krisocam          #+#    #+#             */
-/*   Updated: 2019/11/11 12:54:09 by krisocam         ###   ########.fr       */
+/*   Created: 2019/11/11 14:22:53 by krisocam          #+#    #+#             */
+/*   Updated: 2019/11/11 14:28:20 by krisocam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
+int		ft_countw(char *str)
 {
-	void	*result;
-	size_t	i;
+	int		words;
 
-	i = 0;
-	if (!(result = malloc(count * size)))
-		return (NULL);
-	if (result)
-		ft_bzero(result, count * size);
-	return (result);
+	words = 0;
+	while (*str)
+	{
+		while (*str == ' ' || *str == '\n' || *str == '\t')
+			str++;
+		if (*str != ' ' || *str != '\n' || *str != '\t')
+			words++;
+		while (*str && *str != ' ' && *str != '\n' && *str != '\t')
+			str++;
+	}
+	return (words);
 }

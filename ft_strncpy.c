@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: krisocam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/05 15:19:00 by krisocam          #+#    #+#             */
-/*   Updated: 2019/11/11 12:54:09 by krisocam         ###   ########.fr       */
+/*   Created: 2019/11/11 17:56:42 by krisocam          #+#    #+#             */
+/*   Updated: 2019/11/11 17:57:23 by krisocam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	*ft_calloc(size_t count, size_t size)
+char	*ft_strncpy(char *dest, const char *src, unsigned int n)
 {
-	void	*result;
-	size_t	i;
+	unsigned int i;
 
 	i = 0;
-	if (!(result = malloc(count * size)))
-		return (NULL);
-	if (result)
-		ft_bzero(result, count * size);
-	return (result);
+	while (src[i] != '\0' && i < n)
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	while (i < n)
+	{
+		dest[i] = '\0';
+		i++;
+	}
+	return (dest);
 }

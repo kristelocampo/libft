@@ -1,26 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: krisocam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/05 15:19:00 by krisocam          #+#    #+#             */
-/*   Updated: 2019/11/11 12:54:09 by krisocam         ###   ########.fr       */
+/*   Created: 2019/11/11 15:34:19 by krisocam          #+#    #+#             */
+/*   Updated: 2019/11/11 15:34:47 by krisocam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
+char	*ft_strrev(char *str)
 {
-	void	*result;
-	size_t	i;
+	int		i;
+	int		size;
+	int		count;
+	char	swap;
 
 	i = 0;
-	if (!(result = malloc(count * size)))
-		return (NULL);
-	if (result)
-		ft_bzero(result, count * size);
-	return (result);
+	size = 0;
+	count = 0;
+	while (str[size])
+		size++;
+	while (i < size - 1)
+	{
+		swap = str[i];
+		str[i] = str[size - 1];
+		str[size - 1] = swap;
+		i++;
+		size--;
+		count++;
+	}
+	return (str);
 }
