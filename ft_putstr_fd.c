@@ -6,7 +6,7 @@
 /*   By: krisocam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 17:34:55 by krisocam          #+#    #+#             */
-/*   Updated: 2019/11/11 13:09:04 by krisocam         ###   ########.fr       */
+/*   Updated: 2019/11/12 13:53:25 by krisocam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_putstr_fd(char *str, int fd)
 
 	i = 0;
 	if (!str)
-		return;
+		return ;
 	while (str[i])
 	{
 		write(fd, &str[i], 1);

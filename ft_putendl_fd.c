@@ -6,7 +6,7 @@
 /*   By: krisocam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 17:46:52 by krisocam          #+#    #+#             */
-/*   Updated: 2019/11/11 13:08:29 by krisocam         ###   ########.fr       */
+/*   Updated: 2019/11/12 13:52:58 by krisocam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_putendl_fd(char *s, int fd)
 {
 	if (!s)
-		return;
+		return ;
 	else
 		ft_putstr_fd(s, fd);
 	ft_putchar_fd('\n', fd);

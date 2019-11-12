@@ -6,76 +6,95 @@
 /*   By: krisocam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 20:36:15 by krisocam          #+#    #+#             */
-/*   Updated: 2019/11/11 23:27:42 by krisocam         ###   ########.fr       */
+/*   Updated: 2019/11/12 21:09:26 by krisocam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		separator(char const *str, char c)
+static int		separator(char const str, char ch)
 {
-	int i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == c)
-			return (1);
-		i++;
-	}
+	if (str == ch)
+		return (1);
 	return (0);
 }
 
-char	**ft_split(char const *str, char c)
+static int		is_word(char const str, char before, char ch)
+{
+	return (!separator(str, ch) && separator(before, ch));
+}
+
+static int		word_count(char const *str, char ch)
+{
+	int		i;
+	int		count_word;
+
+	i = 0;
+	count_word = 0;
+	while (str[i])
+	{
+		if (is_word(str[i], str[i - 1], ch) ||
+				(!separator(str[i], ch) && i == 0))
+			count_word++;
+		i++;
+	}
+	return (count_word);
+}
+
+static int		*word_size(char const *str, char ch)
+{
+	int		i;
+	int		index;
+	int		count_word;
+	int		*size_word;
+
+	i = 0;
+	count_word = word_count(str, ch);
+	if (!(size_word = malloc(sizeof(int) * count_word)))
+		return (0);
+	while (i <= count_word)
+		size_word[i++] = 0;
+	i = 0;
+	index = 0;
+	while (str[i])
+	{
+		if (!separator(str[i], ch))
+			size_word[index]++;
+		else if (i > 0 && !separator(str[i - 1], ch))
+			index++;
+		i++;
+	}
+	return (size_word);
+}
+
+char			**ft_split(char const *str, char ch)
 {
 	int		i;
 	int		j;
-	int		k;
 	int		in;
+	int		*size_word;
 	char	**split;
 
 	if (!str)
 		return (NULL);
-	if (!(split = malloc(sizeof(char *) * (ft_strlen(str) + 1))))
+	if (!(split = malloc(sizeof(char *) * (word_count(str, ch) + 1))))
 		return (NULL);
-	i = 0;
+	size_word = word_size(str, ch);
+	i = -1;
+	j = 0;
 	in = 0;
-	while (str[i])
+	while (str[++i])
 	{
-		while (separator(&str[i], c))
-			i++;
-		k = 0;
-		while (!separator(&str[i], c) && str[i + k])
-			k++;
-		in = 0;
-		if (!(split[in] = malloc(sizeof(char) * (k + 1))))
-			return (NULL);
-		j = 0;
-		while (!separator(&str[i], c) && str[i])
-			split[in][j++] = str[i++];
-	   split[in][j] = '\0';
+		if (!separator(str[i], ch))
+		{
+			if (i == 0 || is_word(str[i], str[i - 1], ch))
+				split[in] = malloc(sizeof(char) * size_word[in]);
+			split[in][j] = str[i];
+			split[in][++j] = '\0';
+		}
+		else if (i > 0 && !separator(str[i - 1], ch) && ++in)
+			j = 0;
 	}
-	split[in] = NULL;
+	split[word_count(str, ch)] = 0;
 	return (split);
 }
-/**
-int main()
-{
-	char months[] = "JAN,FEB,MAR,APR,MAY,JUN,JUL,AUG,SEP,OCT,NOV,DEC";
-    char** tokens;
-    printf("months=[%s]\n\n", months);
-
-    tokens = ft_split(months, ',');
-
-    if (tokens)
-    {
-        int i;
-        for (i = 0; *(tokens + i); i++)
-        {
-            printf("month=[%s]\n", *(tokens + i));
-            free(*(tokens + i));
-        }
-        printf("\n");
-        free(tokens);
-    }
-}**/
