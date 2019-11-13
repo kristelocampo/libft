@@ -6,66 +6,70 @@
 /*   By: krisocam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 16:44:37 by krisocam          #+#    #+#             */
-/*   Updated: 2019/11/12 21:22:54 by krisocam         ###   ########.fr       */
+/*   Updated: 2019/11/13 10:04:00 by krisocam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	ft_n_in_ptr(char *ptr, int n, int len)
+static int		nb_size(int n)
 {
-	int i;
+	unsigned int size;
+	unsigned int nb;
 
-	if (n == 0 && len == 1)
-	{
-		ptr[0] = '0';
-		return ;
-	}
-	if (n < 0)
-	{
-		ptr[0] = '-';
-		ft_n_in_ptr(ptr, -n, len);
-		return ;
-	}
-	i = len - 1;
-	while (ptr[i])
-		i--;
-	ptr[i] = '0' + n % 10;
-	if (n / 10)
-		ft_n_in_ptr(ptr, n / 10, len);
-}
-
-static int	ft_get_number_length(int n)
-{
-	int len;
-
-	if (n <= -2147483648)
-		return (11);
-	len = 0;
+	size = 0;
 	if (n <= 0)
-		len++;
+	{
+		size++;
+		nb = -n;
+	}
+	else
+		nb = n;
 	while (n)
 	{
 		n /= 10;
-		len++;
+		size++;
 	}
-	return (len);
+	return (size);
 }
 
-char		*ft_itoa(int n)
+static char		*calc(int n, int sign)
 {
-	char	*res;
-	int		len;
+	char	*dest;
+	int		i;
 
-	len = ft_get_number_length(n);
-	if(!(res = ft_calloc(sizeof(char), len + 1)))
+	i = 0;
+	if (!(dest = ft_calloc(sizeof(char), (nb_size(n) + 1))))
 		return (NULL);
-	if (n <= -2147483648)
+	if (n < 0)
 	{
-		res = ft_calloc(sizeof(char), 12);
-		ft_memcpy(res, "-2147483648", 11);
-		return (res);
+		sign = -1;
+		n = -n;
 	}
-	ft_n_in_ptr(res, n, len);
-	return (res);
+	while (n)
+	{
+		dest[i] = n % 10 + 48;
+		n /= 10;
+		i++;
+	}
+	if (sign == -1)
+	{
+		dest[i] = '-';
+		i++;
+	}
+	ft_strrev(dest);
+	dest[i] = '\0';
+	return (dest);
+}
+
+char			*ft_itoa(int n)
+{
+	int		sign;
+
+	sign = 1;
+	if (n == 0)
+		return (ft_strdup("0"));
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
+	return (calc(n, sign));
 }

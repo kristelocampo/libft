@@ -6,7 +6,7 @@
 /*   By: krisocam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 20:36:15 by krisocam          #+#    #+#             */
-/*   Updated: 2019/11/12 21:09:26 by krisocam         ###   ########.fr       */
+/*   Updated: 2019/11/13 10:01:05 by krisocam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,6 @@ static int		separator(char const str, char ch)
 	return (0);
 }
 
-static int		is_word(char const str, char before, char ch)
-{
-	return (!separator(str, ch) && separator(before, ch));
-}
-
 static int		word_count(char const *str, char ch)
 {
 	int		i;
@@ -33,7 +28,7 @@ static int		word_count(char const *str, char ch)
 	count_word = 0;
 	while (str[i])
 	{
-		if (is_word(str[i], str[i - 1], ch) ||
+		if ((!separator(str[i], ch) && separator(str[i - 1], ch)) ||
 				(!separator(str[i], ch) && i == 0))
 			count_word++;
 		i++;
@@ -67,18 +62,13 @@ static int		*word_size(char const *str, char ch)
 	return (size_word);
 }
 
-char			**ft_split(char const *str, char ch)
+static char		**cal_split(char const *str, char ch, char **split)
 {
 	int		i;
 	int		j;
 	int		in;
 	int		*size_word;
-	char	**split;
 
-	if (!str)
-		return (NULL);
-	if (!(split = malloc(sizeof(char *) * (word_count(str, ch) + 1))))
-		return (NULL);
 	size_word = word_size(str, ch);
 	i = -1;
 	j = 0;
@@ -87,7 +77,7 @@ char			**ft_split(char const *str, char ch)
 	{
 		if (!separator(str[i], ch))
 		{
-			if (i == 0 || is_word(str[i], str[i - 1], ch))
+			if (i == 0 || (!separator(str[i], ch) && separator(str[i - 1], ch)))
 				split[in] = malloc(sizeof(char) * size_word[in]);
 			split[in][j] = str[i];
 			split[in][++j] = '\0';
@@ -97,4 +87,15 @@ char			**ft_split(char const *str, char ch)
 	}
 	split[word_count(str, ch)] = 0;
 	return (split);
+}
+
+char			**ft_split(char const *str, char ch)
+{
+	char	**split;
+
+	if (!str)
+		return (NULL);
+	if (!(split = malloc(sizeof(char *) * (word_count(str, ch) + 1))))
+		return (NULL);
+	return (cal_split(str, ch, split));
 }
