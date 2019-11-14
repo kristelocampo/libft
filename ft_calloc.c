@@ -6,7 +6,7 @@
 /*   By: krisocam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 15:19:00 by krisocam          #+#    #+#             */
-/*   Updated: 2019/11/11 12:54:09 by krisocam         ###   ########.fr       */
+/*   Updated: 2019/11/14 12:19:11 by krisocam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 void	*ft_calloc(size_t count, size_t size)
 {
 	void	*result;
-	size_t	i;
 
-	i = 0;
 	if (!(result = malloc(count * size)))
 		return (NULL);
 	if (result)

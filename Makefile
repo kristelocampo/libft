@@ -17,21 +17,21 @@ cc			= gcc
 RM			= rm -f
 CFLAGS		= -Wall -Werror -Wextra
 
-LIB			= libft.a
+NAME		= libft.a
 
 .c.o:
 			${CC} ${CFLAGS} -I${INCLUDES} -c $< -o ${<:.c=.o}
 
-all:		${LIB}
+all:		${NAME}
 
-${LIB}:		${OBJS}
-			ar rc ${LIB} ${OBJS}
+$(NAME):	${OBJS}
+			ar rc ${NAME} ${OBJS}
 
 clean:
 			${RM} ${OBJS}
 
 fclean:		clean
-			${RM} ${LIB}
+			${RM} ${NAME}
 
 re:			fclean all
 

@@ -6,7 +6,7 @@
 /*   By: krisocam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 12:26:07 by krisocam          #+#    #+#             */
-/*   Updated: 2019/11/12 17:47:06 by krisocam         ###   ########.fr       */
+/*   Updated: 2019/11/13 15:39:50 by krisocam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdlib.h>
 
 int			ft_isalnum(int ch);
-int			ft_isaplha(int ch);
+int			ft_isalpha(int ch);
 int			ft_isascii(int ch);
 int			ft_isprint(int ch);
 int			ft_toupper(int ch);
