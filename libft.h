@@ -6,7 +6,7 @@
 /*   By: krisocam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 12:26:07 by krisocam          #+#    #+#             */
-/*   Updated: 2019/11/18 19:14:32 by krisocam         ###   ########.fr       */
+/*   Updated: 2019/11/18 20:26:14 by krisocam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,9 @@ t_list			*ft_lstlast(t_list *list);
 void			ft_lstadd_front(t_list **list, t_list *new);
 void 			ft_lstadd_back(t_list **alst, t_list *new);
 void 			ft_lstdelone(t_list *list, void (*del)(void*));
+void			ft_lstclear(t_list **list, void (*del)(void*));
+void 			ft_lstiter(t_list *list, void (*f)(void *));
+t_list 			*ft_lstmap(t_list *list, void *(*f)(void *), void (*del)(void *));
+
+
 #endif
