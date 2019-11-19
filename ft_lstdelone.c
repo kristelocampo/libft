@@ -6,7 +6,7 @@
 /*   By: krisocam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 19:07:16 by krisocam          #+#    #+#             */
-/*   Updated: 2019/11/18 20:26:08 by krisocam         ###   ########.fr       */
+/*   Updated: 2019/11/19 13:21:20 by krisocam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@ void	ft_lstdelone(t_list *list, void (*del)(void*))
 	{
 		del(list->content);
 		free(list);
+		list = NULL;
 	}
 }

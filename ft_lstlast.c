@@ -6,7 +6,7 @@
 /*   By: krisocam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 18:36:11 by krisocam          #+#    #+#             */
-/*   Updated: 2019/11/18 18:51:55 by krisocam         ###   ########.fr       */
+/*   Updated: 2019/11/19 12:26:51 by krisocam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_list		*ft_lstlast(t_list *list)
 {
 	if (!list)
-		return(NULL);
+		return (NULL);
 	while (list->next)
 		list = list->next;
 	return (list);

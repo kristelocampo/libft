@@ -6,7 +6,7 @@
 /*   By: krisocam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 12:26:07 by krisocam          #+#    #+#             */
-/*   Updated: 2019/11/18 20:26:14 by krisocam         ###   ########.fr       */
+/*   Updated: 2019/11/19 13:25:31 by krisocam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,12 @@ size_t			ft_strlcat(char *dest, const char *src, size_t size);
 int				ft_lstsize(t_list *lst);
 t_list			*ft_lstnew(void *content);
 t_list			*ft_lstlast(t_list *list);
+t_list			*ft_lstmap(t_list *list, void *(*f) (void *),
+				void (*del) (void *));
 void			ft_lstadd_front(t_list **list, t_list *new);
-void 			ft_lstadd_back(t_list **alst, t_list *new);
-void 			ft_lstdelone(t_list *list, void (*del)(void*));
-void			ft_lstclear(t_list **list, void (*del)(void*));
-void 			ft_lstiter(t_list *list, void (*f)(void *));
-t_list 			*ft_lstmap(t_list *list, void *(*f)(void *), void (*del)(void *));
-
+void			ft_lstadd_back(t_list **alst, t_list *new);
+void			ft_lstdelone(t_list *list, void (*del) (void*));
+void			ft_lstclear(t_list **list, void (*del) (void*));
+void			ft_lstiter(t_list *list, void (*f) (void*));
 
 #endif

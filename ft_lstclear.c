@@ -6,13 +6,13 @@
 /*   By: krisocam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 20:08:53 by krisocam          #+#    #+#             */
-/*   Updated: 2019/11/18 20:14:09 by krisocam         ###   ########.fr       */
+/*   Updated: 2019/11/19 13:26:40 by krisocam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_lstclear(t_list **list, void (*del)(void *))
+void	ft_lstclear(t_list **list, void (*del) (void *))
 {
 	t_list	*next;
 	t_list	*dest;
@@ -25,7 +25,8 @@ void ft_lstclear(t_list **list, void (*del)(void *))
 	while (dest)
 	{
 		next = dest->next;
-		ft_lstdelone(dest, del);
+		del(dest->content);
+		free(dest);
 		dest = next;
 	}
 	*list = NULL;
